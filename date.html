@@ -12,7 +12,8 @@
 <!-- ✅ Music iframe -->
 <iframe src="musicplayer.html"
         allow="autoplay"
-        style="display:none;"></iframe>
+        style="display:none;"
+        id="musicFrame"></iframe>
 
 <h1 title="choose a date">Are you free on ...</h1>
 
@@ -24,18 +25,31 @@
   </div>
 </form>
 
-<!-- ✅ Reset music time when landing on this page -->
 <script>
   // Clear saved music time so it starts from beginning
   localStorage.removeItem("musicTime");
   
-  // Optional: trigger play on first click
-  document.addEventListener("click", function () {
-    const iframe = document.querySelector('iframe');
+  // Trigger play on first user interaction
+  let played = false;
+  
+  function tryPlayMusic() {
+    if (played) return;
+    
+    const iframe = document.getElementById('musicFrame');
     if (iframe && iframe.contentWindow) {
-      iframe.contentWindow.postMessage('play', '*');
+      try {
+        iframe.contentWindow.postMessage('play', '*');
+        played = true;
+      } catch (e) {
+        console.log('Could not send play message:', e);
+      }
     }
-  }, { once: true });
+  }
+  
+  // Try on any user interaction
+  document.addEventListener('click', tryPlayMusic, { once: true });
+  document.addEventListener('touchstart', tryPlayMusic, { once: true });
+  document.addEventListener('keydown', tryPlayMusic, { once: true });
 </script>
 
 </body>
