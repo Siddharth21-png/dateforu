@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Activities</title>
+  <link rel="stylesheet" href="css/activities.css" />
+</head>
+
+<body>
+
+<!-- ✅ ONLY THIS IS NEEDED for continuous music -->
+<iframe src="musicplayer.html"
+        allow="autoplay"
+        style="display:none;"></iframe>
+
+<div id="activityquestion">
+  <b>What are we doing after?</b>
+</div>
+
+<div class="activities-selection">
+
+  <div class="activity-item">
+    <img src="activities/moviedate.jpg" alt="movie" />
+    <label>
+      <input type="checkbox" name="activities" value="movie date" />
+      a movie date
+    </label>
+  </div>
+
+  <div class="activity-item">
+    <img src="activities/lovesport.jpg" alt="arcade" />
+    <label>
+      <input type="checkbox" name="activities" value="lovesport" />
+      lovesport
+    </label>
+  </div>
+
+  <div class="activity-item">
+    <img src="activities/tajmahal.jpg" alt="cinema" />
+    <label>
+      <input type="checkbox" name="activities" value="cinema" />
+      tajmahal
+    </label>
+  </div>
+
+  <div class="activity-item">
+    <img src="activities/agrafort.jpg" alt="tajmahal" />
+    <label>
+      <input type="checkbox" name="activities" value="agra fort" />
+      agra fort
+    </label>
+  </div>
+
+  <div class="activity-item">
+    <img src="activities/sadarbazzar.jpg" alt="sadarbazzar" />
+    <label>
+      <input type="checkbox" name="activities" value="sadarbazzar" />
+      sadarbazzar
+    </label>
+  </div>
+
+  <div class="activity-item">
+    <img src="activities/park.jpeg" alt="park" />
+    <label>
+      <input type="checkbox" name="activities" value="park" />
+      park
+    </label>
+  </div>
+
+</div>
+
+<!-- BUTTON -->
+<button class="button" onclick="saveActivities()">
+  Last page ...
+</button>
+
+<!-- SAVE + NAVIGATION SCRIPT -->
+<script>
+function saveActivities() {
+  let checkedActivities = document.querySelectorAll('input[name="activities"]:checked');
+
+  if (checkedActivities.length === 0) {
+      alert("Please select at least one activity 😄");
+      return;
+  }
+
+  let activities = [];
+  checkedActivities.forEach(item => {
+      activities.push(item.value);
+  });
+
+  localStorage.setItem("selectedActivities", JSON.stringify(activities));
+  window.location.href = "lastpage.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Selection</title>
+<link rel="stylesheet" href="css/food.css">
+</head>
+
+<body>
+
+<!-- ✅ ONLY THIS IS NEEDED for continuous music -->
+<iframe src="musicplayer.html"
+        allow="autoplay"
+        style="display:none;"></iframe>
+
+<div id="foodquestion">
+  <b>What food would you like to eat?</b>
+</div>
+
+<div class="food-selection">
+
+<div class="food-item">
+<img src="food/burgers.jpg" alt="Burgers">
+<label>
+<input type="checkbox" name="food" value="Burgers and Fried Chicken">
+burgers and fried chicken
+</label>
+</div>
+
+<div class="food-item">
+<img src="food/panipuri.jpg" alt="Paanipuri">
+<label>
+<input type="checkbox" name="food" value="Paanipuri">
+paanipuri
+</label>
+</div>
+
+<div class="food-item">
+<img src="food/hyderabadibiryani.jpg" alt="Hyderabadi Biryani">
+<label>
+<input type="checkbox" name="food" value="Hyderabadi Biryani">
+hyderabadi biryani
+</label>
+</div>
+
+<div class="food-item">
+<img src="food/pasta.jpg" alt="Pasta">
+<label>
+<input type="checkbox" name="food" value="Pasta">
+pasta
+</label>
+</div>
+
+<div class="food-item">
+<img src="food/pizza.jpg" alt="Pizza">
+<label>
+<input type="checkbox" name="food" value="Pizza">
+pizza
+</label>
+</div>
+
+<div class="food-item">
+<img src="food/Dosa.jpg" alt="Dosa">
+<label>
+<input type="checkbox" name="food" value="Dosa">
+dosa
+</label>
+</div>
+
+<div class="food-item">
+<img src="food/cholebhature.jpg" alt="Chole Bhature">
+<label>
+<input type="checkbox" name="food" value="Chole Bhature">
+chole bhature
+</label>
+</div>
+
+<div class="food-item">
+<img src="food/siddharth.jpeg" alt="me">
+<label>
+<input type="checkbox" name="food" value="me">
+me (siddharth special dish (limited edition))
+</label>
+</div>
+
+</div>
+
+<button class="button" onclick="sendSelection()">
+Continue Hihihhh...
+</button>
+
+<script>
+function sendSelection() {
+  let checkedFoods = document.querySelectorAll('input[name="food"]:checked');
+
+  if (checkedFoods.length === 0) {
+      alert("Please select at least one food!");
+      return;
+  }
+
+  let foods = [];
+  checkedFoods.forEach(food => {
+      foods.push(food.value);
+  });
+
+  localStorage.setItem("selectedFoods", JSON.stringify(foods));
+  window.location.href = "dessert.html";
+}
+</script>
+
+</body>
+</html>
